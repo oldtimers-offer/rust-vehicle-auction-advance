@@ -1,0 +1,59 @@
+sqlx database create --database-url postgres://your_username:your_password@localhost:5434/vehicle_auctions
+sqlx migrate run
+
+
+
+
+
+curl 127.0.0.1:8080/users/register -H 'Content-type: application/json' -d '{"username":"mica", "password":"tixi"}'
+
+curl 127.0.0.1:8080/users/login -H 'Content-type: application/json' -d '{"username":"mica", "password":"tixi"}'
+
+curl 127.0.0.1:8080/users/login -H 'Content-type: application/json' -d '{"username":"testuser4", "password":"hashedpassword5"}'
+
+
+
+# curl -X POST http://127.0.0.1:8000/login -H "Content-Type: application/json" -d '{"username": "admin", "password": "password"}'
+
+# { "token": "your_generated_jwt_token" }
+
+# curl -X GET http://127.0.0.1:8000/cars -H "Authorization: Bearer your_generated_jwt_token"
+
+
+
+curl -X POST 127.0.0.1:8080/vehicles/create -H "Content-Type: application/json" -H "Session-Code: 85b6c8a4-d41f-4b51-b7c1-9a35190ab798" -d '{"name": "Classic Mustang", 
+"description": "A beautiful classic car from the 1960s.","starting_price": 25000}'
+
+
+
+
+get session:85b6c8a4-d41f-4b51-b7c1-9a35190ab798
+
+
+
+curl 127.0.0.1:8080/vehicles/list
+
+
+curl -X POST 127.0.0.1:8080/auctions/create \
+-H "Content-Type: application/json" \
+-H "Session-Code: 85b6c8a4-d41f-4b51-b7c1-9a35190ab798" \
+-d '{"vehicle_id": 1, "starting_price": 26000.00, "end_time": "2025-10-10T23:59:59"}'
+
+curl -X DELETE 127.0.0.1:8080/vehicles/delete/3 \
+-H "Session-Code: e8034dff-d246-486f-90de-b67f62fe0228"
+
+
+curl -X POST \
+     -H "Content-Type: application/json" \
+     -H "Session-Code: 9165d6dd-8958-471a-a799-d0862ea794e8" \
+     -d '{"auction_id": 14, "bid_amount": 2600.20}' \
+     http://127.0.0.1:8080/auctions/bid   
+
+get session:9165d6dd-8958-471a-a799-d0862ea794e8
+
+
+curl -X POST \
+     -H "Session-Code: 85b6c8a4-d41f-4b51-b7c1-9a35190ab798" \
+     http://127.0.0.1:8080/auctions/close/14
+
+

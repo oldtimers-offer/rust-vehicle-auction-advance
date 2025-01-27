@@ -1,0 +1,24 @@
+[package]
+name = "vehicle_auctions"
+version = "0.1.0"
+edition = "2021"
+authors = ["Milan Bjegovic"]
+description = "Rust Backend for Vehicle Auctions Advance Logic Version"
+
+[lib]
+path = "src/lib.rs"
+
+
+[dependencies]
+actix-web = "4.0"
+serde = { version = "1.0", features = ["derive"] }
+sqlx = { version = "0.8.3", features = ["postgres", "runtime-tokio-native-tls", "migrate", "bigdecimal", "chrono"] }
+dotenv = "0.15"
+argon2 = "0.5"
+rand = "0.8"
+tokio = { version = "1", features = ["full"] }
+bigdecimal = { version = "0.4", features = ["serde"] }
+redis = { version = "0.28.1", features = ["aio", "tokio-comp"] }
+uuid = { version = "1.12.1", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+serde_json = "1.0.137"
